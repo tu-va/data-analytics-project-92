@@ -8,9 +8,9 @@ count(quantity) as operations,
 sum(quantity) as income
 from sales
 inner join employees on employee_id = sales_person_id 
-group by employee_id, quantity
+group by name
 order by income desc
-limit 10; 
+limit 10;
 
 with tab as(
 select /*отчет с информацией о средней выручке продавцов*/
