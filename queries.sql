@@ -83,13 +83,13 @@ order by age_category;
 /*customers_by_month.csv с количеством покупателей и выручкой по месяцам*/
 select 
 to_char(cast(sale_date as date),'YYYY-MM') as date, /*приводим данные в вид ГОД-МЕСЯЦ*/
-count(customers.customer_id) as total_customers, /*считаем кол-во покупателей по дате покупки*/
+count(distinct(customers.customer_id)) as total_customers, /*считаем кол-во покупателей по дате покупки*/
 floor(sum(sales.quantity*products.price)) as income
 from sales 
 inner join customers on customers.customer_id = sales.customer_id /*соединяем таблицы*/
 inner join products on sales.product_id = products.product_id
 group by date
-order by date;
+order by date
 
 
 /*special_offer.csv с покупателями первая покупка которых пришлась на время проведения специальных акций*/
