@@ -29,7 +29,7 @@ group by concat(first_name, ' ', last_name)
 )
 select /*округление до целого+информация о продавцам, у которых сред выручка за сделку меньше средней выручки по всем продавцам*/
 name,
-floor(average_income) as average_income
+round(average_income) as average_income
 from tab
 where average_income < 
 (
@@ -47,7 +47,7 @@ select
 distinct(concat(first_name, ' ', last_name)) as name,
 to_char(sales.sale_date, 'id') as weekdate, /*порядковый номер дня недели для сортировки*/
 to_char(sales.sale_date,'day') as weekday,
-floor(sum(sales.quantity*products.price)) as income
+round(sum(sales.quantity*products.price)) as income
 from sales
 inner join employees on employee_id = sales_person_id
 inner join products on sales.product_id = products.product_id
